@@ -86,14 +86,6 @@ function getTimeUntilNextRun(): number {
 
 function scheduleNextRun() {
   const timeUntilNext = getTimeUntilNextRun();
-  console.log("timeUntilNext:", timeUntilNext);
-  const nextRunDate = new Date(Date.now() + timeUntilNext);
-  const hours = Math.floor(timeUntilNext / 1000 / 60 / 60);
-  const minutes = Math.floor((timeUntilNext / 1000 / 60) % 60);
-  console.log(
-    `Next run scheduled in ${hours} hours and ${minutes} minutes (${nextRunDate.toUTCString()})`
-  );
-  
   setTimeout(() => {
     processGetting().then(() => {
       scheduleNextRun();
